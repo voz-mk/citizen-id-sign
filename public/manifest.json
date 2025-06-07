@@ -1,0 +1,28 @@
+
+{
+  "name": "DNIe - Documento Nacional de Identidad",
+  "short_name": "DNIe",
+  "description": "Aplicación de identificación digital segura",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#dc2626",
+  "theme_color": "#dc2626",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-512x512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["government", "utilities", "security"],
+  "lang": "es",
+  "dir": "ltr"
+}

@@ -1,7 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Smartphone, Shield, CheckCircle } from "lucide-react";
+import { Smartphone, CheckCircle } from "lucide-react";
+import Logo from "./Logo";
 
 interface WelcomeScreenProps {
   onNext: () => void;
@@ -12,9 +12,7 @@ const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => {
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-red-600 via-red-700 to-red-800">
       {/* Logo/Header */}
       <div className="text-center mb-8 animate-fade-in">
-        <div className="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-lg">
-          <Shield className="w-10 h-10 text-red-600" />
-        </div>
+        <Logo size="lg" className="mb-4" />
         <h1 className="text-4xl font-bold text-white mb-2">DNIe</h1>
         <p className="text-red-100 text-lg">Documento Nacional de Identidad</p>
       </div>

@@ -1,10 +1,10 @@
 
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card } from "@/components/ui/card";
-import { User, QrCode, Camera, CheckCircle } from "lucide-react";
+import { User, QrCode, CheckCircle } from "lucide-react";
 import CitizenProfile from "./CitizenProfile";
 import QRScanner from "./QRScanner";
+import Logo from "./Logo";
 
 const MainScreen = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -14,6 +14,7 @@ const MainScreen = () => {
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
+          <Logo size="sm" className="mb-2" />
           <h1 className="text-2xl font-bold text-gray-800 mb-2">Panel DNIe</h1>
           <div className="flex items-center justify-center space-x-2 text-green-600">
             <CheckCircle className="w-4 h-4" />

@@ -1,32 +1,76 @@
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Camera, QrCode, CheckCircle, RotateCcw, Send } from "lucide-react";
+import { Camera, QrCode, CheckCircle, RotateCcw, Send, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import QrScanner from 'qr-scanner';
 
 type ScanState = "idle" | "scanning" | "scanned" | "signing" | "success";
 
-const QRScanner = () => {
+const QRScannerComponent = () => {
   const [scanState, setScanState] = useState<ScanState>("idle");
   const [scannedMessage, setScannedMessage] = useState("");
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const qrScannerRef = useRef<QrScanner | null>(null);
   const { toast } = useToast();
 
-  const startScanning = () => {
-    setScanState("scanning");
-    
-    // Simulate QR scanning
-    setTimeout(() => {
-      const mockMessage = "Solicitud de verificación de documento del Banco XYZ para aplicación de préstamo #LA-2024-001. Por favor confirma tu identidad para proceder.";
-      setScannedMessage(mockMessage);
-      setScanState("scanned");
-    }, 2000);
+  useEffect(() => {
+    return () => {
+      if (qrScannerRef.current) {
+        qrScannerRef.current.stop();
+        qrScannerRef.current.destroy();
+      }
+    };
+  }, []);
+
+  const startScanning = async () => {
+    try {
+      if (!videoRef.current) return;
+
+      const qrScanner = new QrScanner(
+        videoRef.current,
+        (result) => {
+          console.log('QR Code detected:', result.data);
+          setScannedMessage(result.data);
+          setScanState("scanned");
+          qrScanner.stop();
+        },
+        {
+          highlightScanRegion: true,
+          highlightCodeOutline: true,
+          preferredCamera: 'environment',
+        }
+      );
+
+      qrScannerRef.current = qrScanner;
+      
+      await qrScanner.start();
+      setHasPermission(true);
+      setScanState("scanning");
+      
+    } catch (error) {
+      console.error('Error starting QR scanner:', error);
+      setHasPermission(false);
+      toast({
+        title: "Error de Cámara",
+        description: "No se pudo acceder a la cámara. Por favor, permite el acceso para escanear códigos QR.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const stopScanning = () => {
+    if (qrScannerRef.current) {
+      qrScannerRef.current.stop();
+    }
+    setScanState("idle");
   };
 
   const signMessage = () => {
     setScanState("signing");
     
-    // Simulate message signing and server response
     setTimeout(() => {
       setScanState("success");
       toast({
@@ -39,6 +83,9 @@ const QRScanner = () => {
   const resetScanner = () => {
     setScanState("idle");
     setScannedMessage("");
+    if (qrScannerRef.current) {
+      qrScannerRef.current.stop();
+    }
   };
 
   const renderScannerContent = () => {
@@ -59,6 +106,14 @@ const QRScanner = () => {
               </p>
             </div>
 
+            {hasPermission === false && (
+              <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <p className="text-sm text-yellow-800">
+                  Se requiere acceso a la cámara para escanear códigos QR. Por favor, permite el acceso cuando se solicite.
+                </p>
+              </div>
+            )}
+
             <Button
               onClick={startScanning}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium"
@@ -73,13 +128,21 @@ const QRScanner = () => {
         return (
           <div className="text-center space-y-6">
             <div className="relative">
-              <div className="w-32 h-32 mx-auto bg-gray-800 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                <Camera className="w-16 h-16 text-white z-10" />
-                
-                {/* Scanning animation */}
-                <div className="absolute inset-0 border-4 border-blue-500 rounded-2xl animate-ping"></div>
-                <div className="absolute inset-2 border-4 border-blue-400 rounded-2xl animate-ping" style={{ animationDelay: '0.5s' }}></div>
-              </div>
+              <video
+                ref={videoRef}
+                className="w-full max-w-sm mx-auto rounded-lg bg-black"
+                playsInline
+                muted
+              />
+              
+              <Button
+                onClick={stopScanning}
+                variant="outline"
+                size="icon"
+                className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm"
+              >
+                <X className="w-4 h-4" />
+              </Button>
             </div>
             
             <div>
@@ -89,10 +152,6 @@ const QRScanner = () => {
               <p className="text-gray-600">
                 Apunta tu cámara al código QR
               </p>
-            </div>
-            
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-blue-600 h-2 rounded-full animate-pulse" style={{ width: '70%' }}></div>
             </div>
           </div>
         );
@@ -111,7 +170,7 @@ const QRScanner = () => {
 
             <Card className="p-4 bg-gray-50 border border-gray-200">
               <h4 className="font-medium text-gray-800 mb-2">Mensaje a Firmar:</h4>
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-sm text-gray-700 leading-relaxed break-words">
                 {scannedMessage}
               </p>
             </Card>
@@ -211,4 +270,4 @@ const QRScanner = () => {
   );
 };
 
-export default QRScanner;
+export default QRScannerComponent;
