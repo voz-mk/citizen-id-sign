@@ -14,10 +14,10 @@ const MainScreen = () => {
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">DNIe Dashboard</h1>
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">Panel DNIe</h1>
           <div className="flex items-center justify-center space-x-2 text-green-600">
             <CheckCircle className="w-4 h-4" />
-            <span className="text-sm font-medium">Authenticated</span>
+            <span className="text-sm font-medium">Autenticado</span>
           </div>
         </div>
 
@@ -29,14 +29,14 @@ const MainScreen = () => {
               className="flex items-center space-x-2 data-[state=active]:bg-red-600 data-[state=active]:text-white"
             >
               <User className="w-4 h-4" />
-              <span>Profile</span>
+              <span>Perfil</span>
             </TabsTrigger>
             <TabsTrigger 
               value="scanner" 
               className="flex items-center space-x-2 data-[state=active]:bg-red-600 data-[state=active]:text-white"
             >
               <QrCode className="w-4 h-4" />
-              <span>Sign</span>
+              <span>Firmar</span>
             </TabsTrigger>
           </TabsList>
 

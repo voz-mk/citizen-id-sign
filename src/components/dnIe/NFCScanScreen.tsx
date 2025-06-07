@@ -37,10 +37,10 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
         {/* Header */}
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
-            Scan your eID
+            Escanea tu DNIe
           </h1>
           <p className="text-gray-600">
-            Place your electronic ID card near your phone's NFC sensor
+            Acerca tu documento electrónico de identidad al sensor NFC de tu teléfono
           </p>
         </div>
 
@@ -73,7 +73,7 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
             {isScanning && (
               <div className="space-y-2">
                 <div className="text-sm text-red-600 font-medium">
-                  Scanning... {scanProgress}%
+                  Escaneando... {scanProgress}%
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div 
@@ -88,14 +88,14 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
               <div className="space-y-4">
                 <div className="flex items-center justify-center space-x-2 text-gray-600">
                   <Waves className="w-5 h-5" />
-                  <span className="text-sm">Ready to scan</span>
+                  <span className="text-sm">Listo para escanear</span>
                 </div>
                 
                 <Button 
                   onClick={startScan}
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-lg font-medium"
                 >
-                  Start NFC Scan
+                  Iniciar Escaneo NFC
                 </Button>
               </div>
             )}
@@ -105,11 +105,11 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
         {/* Instructions */}
         <Card className="p-4 bg-red-50 border border-red-200">
           <div className="text-center">
-            <h3 className="font-medium text-red-800 mb-2">Instructions</h3>
+            <h3 className="font-medium text-red-800 mb-2">Instrucciones</h3>
             <ul className="text-sm text-red-700 space-y-1">
-              <li>• Enable NFC on your device</li>
-              <li>• Place your eID on the back of your phone</li>
-              <li>• Keep it steady during scanning</li>
+              <li>• Activa el NFC en tu dispositivo</li>
+              <li>• Coloca tu DNIe en la parte trasera del teléfono</li>
+              <li>• Manténlo firme durante el escaneo</li>
             </ul>
           </div>
         </Card>

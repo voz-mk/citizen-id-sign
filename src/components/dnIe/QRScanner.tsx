@@ -17,7 +17,7 @@ const QRScanner = () => {
     
     // Simulate QR scanning
     setTimeout(() => {
-      const mockMessage = "Document verification request from Bank XYZ for loan application #LA-2024-001. Please confirm your identity to proceed.";
+      const mockMessage = "Solicitud de verificación de documento del Banco XYZ para aplicación de préstamo #LA-2024-001. Por favor confirma tu identidad para proceder.";
       setScannedMessage(mockMessage);
       setScanState("scanned");
     }, 2000);
@@ -30,8 +30,8 @@ const QRScanner = () => {
     setTimeout(() => {
       setScanState("success");
       toast({
-        title: "Message Signed Successfully",
-        description: "Your digital signature has been applied and sent to the requesting party.",
+        title: "Mensaje Firmado Exitosamente",
+        description: "Tu firma digital ha sido aplicada y enviada a la parte solicitante.",
       });
     }, 1500);
   };
@@ -52,10 +52,10 @@ const QRScanner = () => {
             
             <div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                Scan QR Code
+                Escanear Código QR
               </h3>
               <p className="text-gray-600">
-                Scan a QR code to sign a document or verify your identity
+                Escanea un código QR para firmar un documento o verificar tu identidad
               </p>
             </div>
 
@@ -64,7 +64,7 @@ const QRScanner = () => {
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium"
             >
               <Camera className="w-5 h-5 mr-2" />
-              Start Camera
+              Iniciar Cámara
             </Button>
           </div>
         );
@@ -84,10 +84,10 @@ const QRScanner = () => {
             
             <div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                Scanning...
+                Escaneando...
               </h3>
               <p className="text-gray-600">
-                Point your camera at the QR code
+                Apunta tu cámara al código QR
               </p>
             </div>
             
@@ -105,12 +105,12 @@ const QRScanner = () => {
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                QR Code Detected
+                Código QR Detectado
               </h3>
             </div>
 
             <Card className="p-4 bg-gray-50 border border-gray-200">
-              <h4 className="font-medium text-gray-800 mb-2">Message to Sign:</h4>
+              <h4 className="font-medium text-gray-800 mb-2">Mensaje a Firmar:</h4>
               <p className="text-sm text-gray-700 leading-relaxed">
                 {scannedMessage}
               </p>
@@ -122,7 +122,7 @@ const QRScanner = () => {
                 className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-medium"
               >
                 <Send className="w-5 h-5 mr-2" />
-                Sign Message
+                Firmar Mensaje
               </Button>
               
               <Button
@@ -131,7 +131,7 @@ const QRScanner = () => {
                 className="w-full"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
-                Scan Again
+                Escanear de Nuevo
               </Button>
             </div>
           </div>
@@ -146,10 +146,10 @@ const QRScanner = () => {
             
             <div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                Signing Message...
+                Firmando Mensaje...
               </h3>
               <p className="text-gray-600">
-                Applying your digital signature
+                Aplicando tu firma digital
               </p>
             </div>
           </div>
@@ -164,18 +164,18 @@ const QRScanner = () => {
             
             <div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                Message Signed!
+                ¡Mensaje Firmado!
               </h3>
               <p className="text-gray-600">
-                Your signature has been sent successfully
+                Tu firma ha sido enviada exitosamente
               </p>
             </div>
 
             <Card className="p-4 bg-green-50 border border-green-200">
               <div className="text-center">
-                <h4 className="font-medium text-green-800 mb-1">Signature Status</h4>
+                <h4 className="font-medium text-green-800 mb-1">Estado de la Firma</h4>
                 <p className="text-sm text-green-700">
-                  Document signed and transmitted to the requesting party
+                  Documento firmado y transmitido a la parte solicitante
                 </p>
               </div>
             </Card>
@@ -185,7 +185,7 @@ const QRScanner = () => {
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium"
             >
               <QrCode className="w-5 h-5 mr-2" />
-              Scan Another QR Code
+              Escanear Otro Código QR
             </Button>
           </div>
         );
@@ -201,9 +201,9 @@ const QRScanner = () => {
       {/* Instructions */}
       <Card className="p-4 bg-blue-50 border border-blue-200">
         <div className="text-center">
-          <h4 className="font-medium text-blue-800 mb-2">Digital Signing</h4>
+          <h4 className="font-medium text-blue-800 mb-2">Firma Digital</h4>
           <p className="text-sm text-blue-700">
-            Use this feature to sign documents and verify your identity with third parties using your authenticated digital ID.
+            Usa esta función para firmar documentos y verificar tu identidad con terceros usando tu ID digital autenticado.
           </p>
         </div>
       </Card>
