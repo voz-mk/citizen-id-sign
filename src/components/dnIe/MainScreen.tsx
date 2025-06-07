@@ -10,7 +10,7 @@ const MainScreen = () => {
   const [activeTab, setActiveTab] = useState("profile");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 p-4">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
@@ -26,14 +26,14 @@ const MainScreen = () => {
           <TabsList className="grid w-full grid-cols-2 bg-white shadow-sm">
             <TabsTrigger 
               value="profile" 
-              className="flex items-center space-x-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              className="flex items-center space-x-2 data-[state=active]:bg-red-600 data-[state=active]:text-white"
             >
               <User className="w-4 h-4" />
               <span>Profile</span>
             </TabsTrigger>
             <TabsTrigger 
               value="scanner" 
-              className="flex items-center space-x-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              className="flex items-center space-x-2 data-[state=active]:bg-red-600 data-[state=active]:text-white"
             >
               <QrCode className="w-4 h-4" />
               <span>Sign</span>

@@ -32,7 +32,7 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-red-50 to-red-100">
       <div className="w-full max-w-sm space-y-6">
         {/* Header */}
         <div className="text-center">
@@ -48,7 +48,7 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
         <Card className="p-8 bg-white shadow-lg border-0">
           <div className="text-center space-y-6">
             <div className="relative">
-              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center relative overflow-hidden">
+              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center relative overflow-hidden">
                 <Nfc className="w-16 h-16 text-white z-10" />
                 
                 {/* Animated rings */}
@@ -72,12 +72,12 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
             {/* Progress */}
             {isScanning && (
               <div className="space-y-2">
-                <div className="text-sm text-blue-600 font-medium">
+                <div className="text-sm text-red-600 font-medium">
                   Scanning... {scanProgress}%
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div 
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-200"
+                    className="bg-red-600 h-2 rounded-full transition-all duration-200"
                     style={{ width: `${scanProgress}%` }}
                   ></div>
                 </div>
@@ -93,7 +93,7 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
                 
                 <Button 
                   onClick={startScan}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-lg font-medium"
                 >
                   Start NFC Scan
                 </Button>
@@ -103,10 +103,10 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
         </Card>
 
         {/* Instructions */}
-        <Card className="p-4 bg-blue-50 border border-blue-200">
+        <Card className="p-4 bg-red-50 border border-red-200">
           <div className="text-center">
-            <h3 className="font-medium text-blue-800 mb-2">Instructions</h3>
-            <ul className="text-sm text-blue-700 space-y-1">
+            <h3 className="font-medium text-red-800 mb-2">Instructions</h3>
+            <ul className="text-sm text-red-700 space-y-1">
               <li>• Enable NFC on your device</li>
               <li>• Place your eID on the back of your phone</li>
               <li>• Keep it steady during scanning</li>

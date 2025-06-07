@@ -32,11 +32,11 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-red-50 to-red-100">
       <div className="w-full max-w-sm space-y-6">
         {/* Header */}
         <div className="text-center">
-          <div className="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+          <div className="w-16 h-16 mx-auto mb-4 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
             <Lock className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
@@ -74,7 +74,7 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
                 <div
                   key={index}
                   className={`w-3 h-3 rounded-full ${
-                    index < pin.length ? 'bg-blue-600' : 'bg-gray-200'
+                    index < pin.length ? 'bg-red-600' : 'bg-gray-200'
                   } transition-colors duration-200`}
                 />
               ))}
@@ -83,7 +83,7 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
             <Button 
               onClick={handleSubmit}
               disabled={pin.length < 4 || isLoading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-3 rounded-lg font-medium"
+              className="w-full bg-primary hover:bg-primary/90 disabled:bg-gray-400 text-primary-foreground py-3 rounded-lg font-medium"
             >
               {isLoading ? (
                 <div className="flex items-center space-x-2">

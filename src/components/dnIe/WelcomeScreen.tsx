@@ -9,14 +9,14 @@ interface WelcomeScreenProps {
 
 const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-red-600 via-red-700 to-red-800">
       {/* Logo/Header */}
       <div className="text-center mb-8 animate-fade-in">
         <div className="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-lg">
-          <Shield className="w-10 h-10 text-blue-600" />
+          <Shield className="w-10 h-10 text-red-600" />
         </div>
         <h1 className="text-4xl font-bold text-white mb-2">DNIe</h1>
-        <p className="text-blue-100 text-lg">Digital National Identity</p>
+        <p className="text-red-100 text-lg">Digital National Identity</p>
       </div>
 
       {/* Welcome Card */}
@@ -48,7 +48,7 @@ const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => {
 
           <Button 
             onClick={onNext}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105"
           >
             <Smartphone className="w-5 h-5 mr-2" />
             Get Started
@@ -57,7 +57,7 @@ const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => {
       </Card>
 
       {/* Footer */}
-      <div className="mt-8 text-center text-blue-200 text-sm">
+      <div className="mt-8 text-center text-red-200 text-sm">
         <p>Powered by secure government technology</p>
       </div>
     </div>
