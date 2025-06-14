@@ -52,11 +52,11 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
           <div className="space-y-4">
             <div className="relative">
               <Input
-                type={showPin ? "text" : "password"}
+                type={showPin ? "number" : "password"}
                 placeholder="PIN"
                 value={pin}
                 onChange={(e) => handlePinInput(e.target.value)}
-                className="w-2/3 mx-auto text-center text-4xl font-[Verdana] tracking-widest py-4"
+                className="mx-auto w-2/3 py-4 text-center text-4xl tracking-wide"
                 maxLength={6}
               />
               <button
