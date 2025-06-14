@@ -1,2 +1,36 @@
 
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==
+<svg width="114" height="114" viewBox="0 0 114 114" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#991b1b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1" />
+      <stop offset="50%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" />
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Card Background -->
+  <rect x="9" y="25" width="96" height="64" rx="6" ry="6" fill="url(#cardGradient)" />
+  
+  <!-- Card Pattern Lines -->
+  <rect x="12" y="28" width="90" height="4" rx="2" fill="rgba(255,255,255,0.3)" />
+  <rect x="12" y="35" width="90" height="2" rx="1" fill="rgba(255,255,255,0.2)" />
+  <rect x="12" y="81" width="90" height="2" rx="1" fill="rgba(255,255,255,0.2)" />
+  <rect x="12" y="84" width="90" height="4" rx="2" fill="rgba(255,255,255,0.3)" />
+  
+  <!-- Shield Icon -->
+  <circle cx="57" cy="57" r="16" fill="rgba(255,255,255,0.9)" />
+  <path d="M57 43 L65 46.5 L65 64.5 C65 69 61 71.5 57 71.5 C53 71.5 49 69 49 64.5 L49 46.5 Z" fill="#dc2626" />
+  <rect x="52.5" y="52" width="9" height="12" rx="2" fill="white" />
+  <circle cx="57" cy="49" r="3" fill="white" />
+  
+  <!-- Card Corner Icon -->
+  <rect x="93" y="81" width="8" height="4.5" rx="1" fill="rgba(255,255,255,0.7)" />
+  <rect x="95.5" y="83.5" width="3" height="1" fill="rgba(255,255,255,0.7)" />
+  
+  <!-- Shine Effect -->
+  <rect x="9" y="25" width="96" height="64" rx="6" ry="6" fill="url(#shineGradient)" />
+</svg>

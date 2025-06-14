@@ -1,2 +1,33 @@
 
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==
+<svg width="1125" height="2436" viewBox="0 0 1125 2436" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#991b1b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f3f4f6;stop-opacity:0.95" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1125" height="2436" fill="url(#bgGradient)" />
+  
+  <!-- Main Card -->
+  <rect x="225" y="908" width="675" height="432" rx="32" ry="32" fill="url(#cardGradient)" stroke="rgba(255,255,255,0.3)" stroke-width="3" />
+  
+  <!-- Card Elements -->
+  <rect x="255" y="938" width="615" height="27" rx="13.5" fill="rgba(220,38,38,0.2)" />
+  <rect x="255" y="973" width="615" height="11" rx="5.5" fill="rgba(220,38,38,0.1)" />
+  
+  <!-- Shield Icon -->
+  <circle cx="562.5" cy="1124" r="81" fill="#dc2626" />
+  <path d="M562.5 1056 L608.5 1069.5 L608.5 1155.5 C608.5 1181.5 590.5 1194.5 562.5 1194.5 C534.5 1194.5 516.5 1181.5 516.5 1155.5 L516.5 1069.5 Z" fill="white" />
+  <rect x="542" y="1103" width="41" height="47" rx="7" fill="#dc2626" />
+  <circle cx="562.5" cy="1089" r="11" fill="#dc2626" />
+  
+  <!-- Text -->
+  <text x="562.5" y="1405" text-anchor="middle" font-family="system-ui, -apple-system" font-size="44" font-weight="600" fill="white">DNIe</text>
+  <text x="562.5" y="1460" text-anchor="middle" font-family="system-ui, -apple-system" font-size="27" fill="rgba(255,255,255,0.8)">Documento Nacional de Identidad</text>
+</svg>
