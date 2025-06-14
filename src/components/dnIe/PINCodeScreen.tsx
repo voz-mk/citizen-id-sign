@@ -53,10 +53,11 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
             <div className="relative">
               <Input
                 type={showPin ? "number" : "password"}
+                inputMode="decimal"
                 placeholder="PIN"
                 value={pin}
                 onChange={(e) => handlePinInput(e.target.value)}
-                className="mx-auto w-2/3 py-4 text-center text-4xl tracking-wide"
+                className="mx-auto w-2/3 text-center text-4xl tracking-wide"
                 maxLength={6}
               />
               <button
