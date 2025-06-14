@@ -99,6 +99,8 @@
   }
 
   html, body {
-    @apply bg-background text-foreground h-full;
+    @apply min-h-full text-foreground;
+    /* @apply bg-gradient-to-br from-red-600 via-red-700 to-red-800; */
+    @apply bg-red-700;
   }
 }
