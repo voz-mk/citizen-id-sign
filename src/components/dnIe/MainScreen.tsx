@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, QrCode, CheckCircle } from "lucide-react";
 import CitizenProfile from "./CitizenProfile";
@@ -8,6 +8,14 @@ import Logo from "./Logo";
 
 const MainScreen = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const [profileFirstLoad, setProfileFirstLoad] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setProfileFirstLoad(false);
+    }, 700);
+    return () => clearTimeout(timeout);
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 p-4">
@@ -42,7 +50,7 @@ const MainScreen = () => {
           </TabsList>
 
           <TabsContent value="profile" className="mt-6">
-            <CitizenProfile />
+            <CitizenProfile firstLoad={profileFirstLoad} />
           </TabsContent>
 
           <TabsContent value="scanner" className="mt-6">

@@ -25,40 +25,46 @@ const QRScannerComponent = () => {
     };
   }, []);
 
-  const startScanning = async () => {
-    try {
-      if (!videoRef.current) return;
-
-      const qrScanner = new QrScanner(
-        videoRef.current,
-        (result) => {
-          console.log('QR Code detected:', result.data);
-          setScannedMessage(result.data);
-          setScanState("scanned");
-          qrScanner.stop();
-        },
-        {
-          highlightScanRegion: true,
-          highlightCodeOutline: true,
-          preferredCamera: 'environment',
+  useEffect(() => {
+    if (scanState === 'scanning') {
+      const effect = async () => {
+        try {
+          const qrScanner = new QrScanner(
+            videoRef.current,
+            (result) => {
+              console.log('QR Code detected:', result.data);
+              setScannedMessage(result.data);
+              setScanState("scanned");
+              qrScanner.stop();
+            },
+            {
+              highlightScanRegion: true,
+              highlightCodeOutline: true,
+              preferredCamera: 'environment',
+            }
+          );
+    
+          qrScannerRef.current = qrScanner;
+          
+          await qrScanner.start();
+          setHasPermission(true);
+          
+        } catch (error) {
+          console.error('Error starting QR scanner:', error);
+          setHasPermission(false);
+          toast({
+            title: "Error de Cámara",
+            description: "No se pudo acceder a la cámara. Por favor, permite el acceso para escanear códigos QR.",
+            variant: "destructive",
+          });
         }
-      );
-
-      qrScannerRef.current = qrScanner;
-      
-      await qrScanner.start();
-      setHasPermission(true);
-      setScanState("scanning");
-      
-    } catch (error) {
-      console.error('Error starting QR scanner:', error);
-      setHasPermission(false);
-      toast({
-        title: "Error de Cámara",
-        description: "No se pudo acceder a la cámara. Por favor, permite el acceso para escanear códigos QR.",
-        variant: "destructive",
-      });
+      }
+      effect();
     }
+  }, [scanState])
+
+  const startScanning = () => {
+    setScanState("scanning");
   };
 
   const stopScanning = () => {

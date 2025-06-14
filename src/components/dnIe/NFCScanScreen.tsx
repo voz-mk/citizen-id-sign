@@ -26,7 +26,7 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
           }, 500);
           return 100;
         }
-        return prev + 10;
+        return prev + 25;
       });
     }, 200);
   };

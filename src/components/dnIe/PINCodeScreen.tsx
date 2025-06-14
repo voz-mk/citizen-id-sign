@@ -15,7 +15,7 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = () => {
-    if (pin.length >= 4) {
+    if (pin.length === 6) {
       setIsLoading(true);
       // Simulate PIN verification
       setTimeout(() => {
@@ -53,10 +53,10 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
             <div className="relative">
               <Input
                 type={showPin ? "text" : "password"}
-                placeholder="Introduce tu PIN"
+                placeholder="PIN"
                 value={pin}
                 onChange={(e) => handlePinInput(e.target.value)}
-                className="text-center text-lg tracking-widest py-4 pr-12"
+                className="w-2/3 mx-auto text-center text-4xl font-[Verdana] tracking-widest py-4"
                 maxLength={6}
               />
               <button
@@ -73,7 +73,7 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
               {[...Array(6)].map((_, index) => (
                 <div
                   key={index}
-                  className={`w-3 h-3 rounded-full ${
+                  className={`w-4 h-4 rounded-full ${
                     index < pin.length ? 'bg-red-600' : 'bg-gray-200'
                   } transition-colors duration-200`}
                 />
@@ -82,7 +82,7 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
 
             <Button 
               onClick={handleSubmit}
-              disabled={pin.length < 4 || isLoading}
+              disabled={pin.length < 6 || isLoading}
               className="w-full bg-primary hover:bg-primary/90 disabled:bg-gray-400 text-primary-foreground py-3 rounded-lg font-medium"
             >
               {isLoading ? (

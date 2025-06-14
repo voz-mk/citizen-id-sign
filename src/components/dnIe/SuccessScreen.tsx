@@ -1,5 +1,4 @@
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle, ArrowRight } from "lucide-react";
@@ -9,14 +8,21 @@ interface SuccessScreenProps {
 }
 
 const SuccessScreen = ({ onNext }: SuccessScreenProps) => {
+  const [timeRemaining, setTimeRemaining] = useState(3);
+
   useEffect(() => {
     // Auto-redirect after 3 seconds
+    const timerMs = timeRemaining === 0 ? 300 : 1000;
     const timer = setTimeout(() => {
-      onNext();
-    }, 3000);
+      if (timeRemaining > 0) {
+        setTimeRemaining(prevTimeRemaining => prevTimeRemaining - 1);
+      } else {
+        onNext();
+      }
+    }, timerMs);
 
     return () => clearTimeout(timer);
-  }, [onNext]);
+  }, [onNext, timeRemaining]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-green-50 to-emerald-100">
@@ -47,7 +53,7 @@ const SuccessScreen = ({ onNext }: SuccessScreenProps) => {
             </div>
 
             <div className="pt-4 border-t border-gray-100">
-              <div className="text-sm text-gray-500 mb-2">Redirigiendo en 3 segundos...</div>
+              <div className="text-sm text-gray-500 mb-2">Redirigiendo en {timeRemaining} segundos...</div>
               <div className="w-full bg-gray-200 rounded-full h-1">
                 <div className="bg-green-500 h-1 rounded-full animate-pulse" style={{ width: '100%' }}></div>
               </div>
