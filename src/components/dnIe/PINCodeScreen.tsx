@@ -49,11 +49,12 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
 
         {/* PIN Input Card */}
         <Card className="p-6 bg-white shadow-lg border-0">
-          <div className="space-y-4">
+          <form className="space-y-4">
             <div className="relative">
               <Input
                 type={showPin ? "number" : "password"}
-                inputMode="decimal"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 placeholder="PIN"
                 value={pin}
                 onChange={(e) => handlePinInput(e.target.value)}
@@ -81,7 +82,8 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
               ))}
             </div>
 
-            <Button 
+            <Button
+              type="submit"
               onClick={handleSubmit}
               disabled={pin.length < 6 || isLoading}
               className="w-full bg-primary hover:bg-primary/90 disabled:bg-gray-400 text-primary-foreground py-3 rounded-lg font-medium"
@@ -95,7 +97,7 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
                 'Autenticar'
               )}
             </Button>
-          </div>
+          </form>
         </Card>
 
         {/* Security Info */}

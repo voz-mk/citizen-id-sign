@@ -98,6 +98,24 @@
     @apply border-border;
   }
 
+  *:focus {
+    outline: none;
+  }
+
+  @media (display-mode: standalone) {
+    * {
+      touch-action: pan-x pan-y;
+    }
+    *:not(input):not(select):not(code):not(textarea):not([contenteditable]) {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  }
+
   html, body {
     @apply min-h-full text-foreground;
     /* @apply bg-gradient-to-br from-red-600 via-red-700 to-red-800; */
