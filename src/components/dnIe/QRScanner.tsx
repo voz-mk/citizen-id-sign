@@ -2,18 +2,21 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Camera, QrCode, CheckCircle, RotateCcw, Send, X } from "lucide-react";
+import { Camera, QrCode, CheckCircle, RotateCcw, Send, X, Smartphone, Nfc, Waves } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import QrScanner from 'qr-scanner';
 
-type ScanState = "idle" | "scanning" | "scanned" | "signing" | "success";
+type ScanState = "idle" | "scanning" | "scanned" | "nfc" | "signing" | "success";
 
 const QRScannerComponent = () => {
   const [scanState, setScanState] = useState<ScanState>("idle");
   const [scannedMessage, setScannedMessage] = useState("");
+  const parsedMessage = scannedMessage && JSON.parse(scannedMessage);
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const qrScannerRef = useRef<QrScanner | null>(null);
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanProgress, setScanProgress] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -75,15 +78,7 @@ const QRScannerComponent = () => {
   };
 
   const signMessage = () => {
-    setScanState("signing");
-    
-    setTimeout(() => {
-      setScanState("success");
-      toast({
-        title: "Mensaje Firmado Exitosamente",
-        description: "Tu firma digital ha sido aplicada y enviada a la parte solicitante.",
-      });
-    }, 1500);
+    setScanState("nfc");
   };
 
   const resetScanner = () => {
@@ -93,6 +88,32 @@ const QRScannerComponent = () => {
       qrScannerRef.current.stop();
     }
   };
+
+  const startNFCScan = () => {
+    setIsScanning(true);
+    setScanProgress(0);
+
+    // Simulate scanning progress
+    const interval = setInterval(() => {
+      setScanProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setScanState("signing");
+            setTimeout(() => {
+              setScanState("success");
+              toast({
+                title: "Mensaje Firmado Exitosamente",
+                description: "Tu firma digital ha sido aplicada y enviada a la parte solicitante.",
+              });
+            }, 1500);
+          }, 500);
+          return 100;
+        }
+        return prev + 25;
+      });
+    }, 200);
+  }
 
   const renderScannerContent = () => {
     switch (scanState) {
@@ -177,7 +198,13 @@ const QRScannerComponent = () => {
             <Card className="p-4 bg-gray-50 border border-gray-200">
               <h4 className="font-medium text-gray-800 mb-2">Mensaje a Firmar:</h4>
               <p className="text-sm text-gray-700 leading-relaxed break-words">
-                {scannedMessage}
+                Entidad: {parsedMessage.entity}
+              </p>
+              <p className="text-sm text-gray-700 leading-relaxed break-words">
+                URL: {parsedMessage.url}
+              </p>
+              <p className="text-sm text-gray-700 leading-relaxed break-words">
+                Mensaje: {parsedMessage.message}
               </p>
             </Card>
 
@@ -199,6 +226,60 @@ const QRScannerComponent = () => {
                 Escanear de Nuevo
               </Button>
             </div>
+          </div>
+        );
+
+      case "nfc":
+        return (
+          <div className="text-center space-y-6">
+            <div className="relative">
+              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center relative overflow-hidden">
+                <Nfc className="w-16 h-16 text-white z-10" />
+                {/* Animated rings */}
+                {isScanning && (
+                  <>
+                    <div className="absolute inset-0 border-4 border-white/30 rounded-full animate-ping"></div>
+                    <div className="absolute inset-2 border-4 border-white/40 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                    <div className="absolute inset-4 border-4 border-white/50 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+                  </>
+                )}
+              </div>
+              
+              {/* Phone representation */}
+              <div className="absolute -bottom-2 -right-2">
+                <div className="w-12 h-8 bg-gray-800 rounded-md flex items-center justify-center">
+                  <Smartphone className="w-6 h-6 text-white" />
+                </div>
+              </div>
+            </div>
+            {/* Progress */}
+            {isScanning && (
+              <div className="space-y-2">
+                <div className="text-sm text-red-600 font-medium">
+                  Escaneando... {scanProgress}%
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-red-600 h-2 rounded-full transition-all duration-200"
+                    style={{ width: `${scanProgress}%` }}
+                  ></div>
+                </div>
+              </div>
+            )}
+            {!isScanning && (
+              <div className="space-y-4">
+                <div className="flex items-center justify-center space-x-2 text-gray-600">
+                  <Waves className="w-5 h-5" />
+                  <span className="text-sm">Listo para escanear</span>
+                </div>
+                <Button 
+                  onClick={startNFCScan}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-lg font-medium"
+                >
+                  Iniciar Escaneo NFC
+                </Button>
+              </div>
+            )}
           </div>
         );
 

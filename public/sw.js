@@ -2,11 +2,8 @@
 const CACHE_NAME = 'dnie-v1';
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
-  '/manifest.json',
-  '/pwa-192x192.png',
-  '/pwa-512x512.png'
+  '/manifest.webmanifest',
+  ...self.__WB_MANIFEST.map(entry => entry.url)
 ];
 
 self.addEventListener('install', (event) => {

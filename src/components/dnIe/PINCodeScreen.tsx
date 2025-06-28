@@ -1,9 +1,9 @@
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Lock, Eye, EyeOff } from "lucide-react";
+import { Lock } from "lucide-react";
 
 interface PINCodeScreenProps {
   onNext: () => void;
@@ -11,8 +11,8 @@ interface PINCodeScreenProps {
 
 const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
   const [pin, setPin] = useState("");
-  const [showPin, setShowPin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const pinInput = useRef<HTMLInputElement>();
 
   const handleSubmit = () => {
     if (pin.length === 6) {
@@ -31,9 +31,13 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
     setPin(numericValue);
   };
 
+  const handleFocus = () => {
+    pinInput.current.focus();
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-red-50 to-red-100">
-      <div className="w-full max-w-sm space-y-6">
+      <div className="w-full max-w-xs space-y-6">
         {/* Header */}
         <div className="text-center">
           <div className="w-16 h-16 mx-auto mb-4 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
@@ -49,33 +53,26 @@ const PINCodeScreen = ({ onNext }: PINCodeScreenProps) => {
 
         {/* PIN Input Card */}
         <Card className="p-6 bg-white shadow-lg border-0">
-          <form className="space-y-4">
-            <div className="relative">
-              <Input
-                type={showPin ? "number" : "password"}
-                inputMode="numeric"
-                pattern="[0-9]*"
-                placeholder="PIN"
-                value={pin}
-                onChange={(e) => handlePinInput(e.target.value)}
-                className="mx-auto w-2/3 font-[Verdana] text-center text-4xl tracking-wide"
-                maxLength={6}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPin(!showPin)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                {showPin ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-              </button>
-            </div>
+          <form>
+            <Input
+              type="password"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="PIN"
+              value={pin}
+              onChange={(e) => handlePinInput(e.target.value)}
+              className="text-center text-xl standalone:h-0 standalone:min-h-0 standalone:p-0 standalone:border-0 standalone:opacity-0"
+              maxLength={6}
+              autoFocus={true}
+              ref={pinInput}
+            />
 
             {/* PIN dots indicator */}
-            <div className="flex justify-center space-x-2">
+            <div className="flex justify-center space-x-3 pt-6 pb-14" onClick={handleFocus}>
               {[...Array(6)].map((_, index) => (
                 <div
                   key={index}
-                  className={`w-4 h-4 rounded-full ${
+                  className={`w-7 h-7 rounded-full ${
                     index < pin.length ? 'bg-red-600' : 'bg-gray-200'
                   } transition-colors duration-200`}
                 />

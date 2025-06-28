@@ -18,6 +18,12 @@ export default {
 			}
 		},
 		extend: {
+			screens: {
+				standalone: { raw: '(display-mode: standalone)' },
+				'minimal-ui': { raw: '(display-mode: minimal-ui)' },
+				browser: { raw: '(display-mode: browser)' },
+				fullscreen: { raw: '(display-mode: fullscreen)' },
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

@@ -102,6 +102,21 @@ const NFCScanScreen = ({ onNext }: NFCScanScreenProps) => {
           </div>
         </Card>
 
+        <Card className="p-8 bg-white shadow-lg border-0">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="inline-block w-16 h-16 mr-1 text-blue-900" viewBox="0 0 24 24"><path fill="currentColor" d="M12 5.9a2.1 2.1 0 1 1 0 4.2a2.1 2.1 0 0 1 0-4.2m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4s4-1.79 4-4s-1.79-4-4-4m0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4"></path></svg>
+            <span>Certificado de Autenticación</span>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="inline-block w-16 h-16 mr-1 text-blue-900" viewBox="0 0 256 256"><path fill="currentColor" d="M232 164H70.38c2.2-4.42 4.41-8.94 6.59-13.52l.79-1.66c13.52-1.65 28.69-11.3 45.38-28.87c5.31 12 14 24.73 27.59 27.29c5.26 1 13.51.79 22.93-5.82a58 58 0 0 0 9-7.91C190.9 141.2 205.68 148 232 148a12 12 0 0 0 0-24c-31 0-35.42-10.49-36-12.38c.49-5.37-2.75-9.76-7.88-11.63s-11.17.78-14.22 5.46c-10 15.32-16.62 18.62-18.75 18.21c-4.88-.91-12.39-15.54-15.44-30.09a12 12 0 0 0-21.13-5c-10.3 12.92-19.16 21.79-26.47 27.56c21.19-52.94 17-72.22 11.37-82.25C98.48 24.91 89.41 20 78 20c-18.08 0-32.64 16.55-39 44.26c-3.45 15.1-4 31.81-1.46 45.85c2.65 14.71 8.36 25.7 16.68 32.23c-3.53 7.44-7.22 14.72-10.75 21.66H24a12 12 0 0 0 0 24h6.7c-9.7 17.67-16.85 29.6-17 29.81a12 12 0 1 0 20.56 12.38C34.91 229.15 45.23 212 58 188h174a12 12 0 0 0 0-24M62.43 69.6C65.77 55 72.45 44 78 44c3.71 0 4.29 1 4.64 1.64c1.43 2.53 6.55 17.07-17.44 72.78a44.6 44.6 0 0 1-4-12.56c-1.97-10.97-1.52-24.19 1.23-36.26"></path></svg>
+            <span>Certificado de Firma Digital</span>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="inline-block w-16 h-16 mr-1 text-blue-900" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="m22 16l-2-2h-9.468a4.5 4.5 0 1 0 0 4H16.5l1.25-1.293L19 18h1zM6 16h1M3 3.5v5M6 7V5a1.5 1.5 0 1 1 3 0v2a1.5 1.5 0 1 1-3 0m6-3.5v5m3-5v5M18 7V5a1.5 1.5 0 0 1 3 0v2a1.5 1.5 0 0 1-3 0" color="currentColor"></path></svg>
+            <span>Certificado de Encriptación</span>
+          </div>
+        </Card>
+
         {/* Instructions */}
         <Card className="p-4 bg-red-50 border border-red-200">
           <div className="text-center">
